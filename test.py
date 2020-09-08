@@ -10,8 +10,21 @@ import time, random
 
 import serial
 
+
+#
+# 指定端口
+#
+import argparse #导入模块
+
+parser = argparse.ArgumentParser()  #创建解析对象
+parser.add_argument("--com", default="COM3")    #向该对象中添加使用到的命令行选项和参数
+args = parser.parse_args() #解析命令行
+
+com_port = args.com
+
+
 # ser = serial.Serial( '/dev/ttyUSB0', 9600, timeout=0 )
-ser = serial.Serial("COM3", 9600, timeout=5)  # 开启com3口，波特率115200，超时5
+ser = serial.Serial(com_port, 9600, timeout=5)  # 开启com3口，波特率115200，超时5
 ser.flushInput()  # 清空缓冲区
 
 # 全局变量
